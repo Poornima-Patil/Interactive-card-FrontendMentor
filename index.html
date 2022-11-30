@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Card</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./script.js" defer>
+    </script>
+</head>
+
+<body>
+    <div class="flex flex-col md:flex-row relative">
+        <div class="relative h-72 bg-[url('./images/bg-main-mobile.png')] md:bg-[url('./images/bg-main-desktop.png')] md:w-96 md:h-screen">
+            <div class="p-4 absolute md:hidden h-36 max-w-sm right-10">
+                <span class="absolute left-4 top-40 z-10">
+                <svg width="84" height="47" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff"/><path d="M83.5 23.5c0 5.565-4.507 10.075-10.065 10.075-5.559 0-10.065-4.51-10.065-10.075 0-5.565 4.506-10.075 10.065-10.075 5.558 0 10.065 4.51 10.065 10.075Z" stroke="#fff"/></svg>
+                </span>
+                <span class="absolute left-3 top-56 z-10">
+                    <p id="mb-cardnumber" class="text-xl text-white leading-loose tracking-widest font-semibold"> 0000 0000 0000 0000 </p>
+                </span>
+
+                <span class="absolute left-4 top-72 z-20">
+                    <p id="mb-cardname" class="leading-loose tracking-widest text-white">Jane AppleSeed</p>
+                   
+                </span>
+                <span class="absolute right-16 top-72 z-20">
+                    <p id="mb-yymm" class="text-white">00/00</p>
+                </span>
+                <span class="absolute top-24 right-12">
+                    <p id="mb-cvc" class="text-white">000</p>
+                </span>
+                <img class="z-20 max-w-xs" src="./images/bg-card-back.png">
+            </div>
+            <div class="absolute top-36 md:hidden right-20">
+                <img class="max-w-xs" src="./images/bg-card-front.png">
+            </div>
+
+
+
+            <div class="hidden md:inline-block md:max-w-md md:absolute md:top-10 md:left-12">
+                <img class="max-w-md" src="./images/bg-card-front.png">
+                <span class="absolute left-4 top-8 z-10">
+                    <svg width="84" height="47" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff"/><path d="M83.5 23.5c0 5.565-4.507 10.075-10.065 10.075-5.559 0-10.065-4.51-10.065-10.075 0-5.565 4.506-10.075 10.065-10.075 5.558 0 10.065 4.51 10.065 10.075Z" stroke="#fff"/></svg>
+                    </span>
+                <span class="absolute left-3 top-36 z-10">
+                        <p id="cardnumber" class="text-xl text-white leading-loose tracking-widest font-semibold"> 0000 0000 0000 0000 </p>
+                    </span>
+                <span class="absolute left-4 top-44 z-20">
+                        <p id="cardname" class="leading-loose tracking-widest text-white">Jane AppleSeed</p>
+                      
+                    </span>
+                <span class="absolute right-12 top-44 z-20">
+                        <p id="mmyy" class="text-white">00/00</p>
+                    </span>
+
+                <span class="absolute z-20 top-96 right-4">
+                    <p id="cardcvc" class="text-white"> 000 </p>
+                </span>
+            </div>
+
+            <div class="hidden md:inline-block md:absolute md:bottom-10 md:left-20">
+                <img class="max-w-md" src="./images/bg-card-back.png">
+            </div>
+
+        </div>
+        <div id="thankyou-tab" class="hidden flex-grow min-h-screen m-auto pt-40 text-center">
+            <div class="flex flex-col justify-center items-center">
+                <img class="mx-auto p-4" src="./images/icon-complete.svg">
+                <p class="p-2 font-bold leading-loose tracking-widest"> THANK YOU !</p>
+                <p class="text-gray-400"> We've added your card details</p>
+                <button class="py-4 px-20 mt-4 border-2 rounded-md bg-gray-900 text-white md:max-w-md"> Continue </button>
+            </div>
+        </div>
+        <div id="form-tab" class="flex-grow min-h-screen">
+            <div class="flex">
+                <form class="m-auto pt-16  px-8 py-8 space-y-4" onsubmit="getValues(event)">
+                    <label for="name"> CARDHOLDER NAME </label> <br>
+                    <input class="pl-2 border-2 rounded-md block  border-gray-400" type="text" id="name" name="name" placeholder="e.g. Name Appleseed" size="35">
+                    <span id="name-error" class="hidden text-xs text-red-700"> Error message </span>
+                    <br>
+
+                    <label for="number">CARD NUMBER </label> </br>
+                    <input class="pl-2 border-2 rounded-lg block border-gray-400" type="text" id="number" name="number" placeholder="e.g. 1234 5678 9123 0000" size="35">
+                    <span id="number-error" class="hidden text-xs text-red-700">Error message </span>
+                    <br>
+                    <label class="pt-4" for="date">EXP. DATE(MM/YY)  <span class="ml-6">CVC </span></label>
+                    </br>
+                    <input class="text-center inline border-2 rounded-md" type="text" id="month" name="month" placeholder="MM" size="4">
+                    <input class="inline text-center border-2 rounded-md" type="text" id="year" name="year" placeholder="YY" size="4">
+                    <input class="inline pl-2 border-2 rounded-md ml-4" type="text" id="cvc" name="cvc" placeholder="e.g. 123" size="10">
+                    <br>
+                    <span id="mmyycvc-error" class="hidden text-xs text-red-700">Can't be blank</span>
+                    <button class="min-w-full bg-gray-900 text-white p-4 rounded-md">CONFIRM</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
